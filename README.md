@@ -82,8 +82,10 @@ Contributions are welcome! Feel free to fork the repository and submit pull requ
 📜 License
 This project is licensed under the MIT License.
 
-📬 Contact
-Zakir Elaskar
+## 📬 Contact
+
+**Zakir Elaskar**  
 📧 [zelaskar@csuchico.edu](mailto:zelaskar@csuchico.edu) | [elaskarzakir@gmail.com](mailto:elaskarzakir@gmail.com)  
-🔗 [LinkedIn](https://www.linkedin.com/in/zakelaskar) 
+🔗 [LinkedIn](https://www.linkedin.com/in/zakelaskar)
+ 
 

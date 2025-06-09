@@ -85,7 +85,7 @@ This project is licensed under the MIT License.
 ## 📬 Contact
 
 **Zakir Elaskar**  
-📧 [zelaskar@csuchico.edu](mailto:zelaskar@csuchico.edu) | [elaskarzakir@gmail.com](mailto:elaskarzakir@gmail.com)  
+📧 [zelaskar@csuchico.edu](mailto:zelaskar@csuchico.edu) 
 🔗 [LinkedIn](https://www.linkedin.com/in/zakelaskar)
  
 

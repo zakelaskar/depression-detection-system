@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/CSS/style.css">
+      <script type="text/javascript" src="/static/js/d3/d3.js"></script>
+      <script src="//d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+    <title>Dashboard</title>
+
+  </head>
+  <body>
+
+  <a href="/">
+    <img src = "/static/CSS/images/text_head.png" width="100%">
+  </a>
+
+  <br>
+  <br>
+
+  {% block body %}
+
+<div class="row">
+  <h2><i>Perceived Psychological Traits</i></h2>
+
+  <br>
+   <br>
+  <div class="column_home" id="left-col" align="center">
+    <div>
+    <div class="legend1">
+    <div class="legend1"> <p class="country-name"><span class="key-dot you"></span>You</p> </div>
+    <div class="legend1"> <p class="country-name"><span class="key-dot others"></span>Other candidates</p> </div>
+    </div>
+      <div id="histo"></div>
+    </div>
+  </div>
+
+  <div class="column_home" id="left-col" align="center">
+      <br>
+      <br>
+      <div align="left">
+          {% block extraversion %}
+          {% if traits[0] < 20 %}
+          <p><b>Candidate exhibits low extraversion (more reserved, introverted, and less outgoing) </b><br/>
+                    We would like to suggest you to,<br/>
+                    actively participate in team activities and gradually engage in networking opportunities to develop interpersonal skills and build professional relationships.
+                </p>
+          {% else %}
+          <p><b>Candidate exhibits moderate extraversion, </b></p>
+                <p>Moderate extraversion suggests a balanced approach to social interactions, where the individual is capable of engaging comfortably in both solitary activities and group settings, demonstrating adaptability and a willingness to connect with others when necessary.</p>
+          {% endif %}
+          {% endblock extraversion %}
+          {% block neuroticism %}
+          {% if traits[1] < 5 %}
+            <p><b>Candidate exhibits very low neuroticism</b></p>
+            <p>Very low neuroticism indicates a high level of emotional stability and resilience, suggesting the candidate is likely to remain calm under pressure, handle stress effectively, and maintain a positive outlook even in challenging situations.</p>
+          {% elif traits[1] < 10 %}
+            <p><b>Moderate neuroticism</b></p>
+            <p>Moderate neuroticism indicates a good level of emotional stability and resilience, suggesting the candidate is likely to remain calm under pressure, handle stress effectively, and maintain a positive outlook even in challenging situations.</p>
+          {% else %}
+            <p><b>High neuroticism</b></p>
+            <p>High neuroticism suggests the candidate may experience heightened levels of emotional instability, anxiety, and sensitivity to stressors, which could potentially impact their ability to handle pressure and maintain consistent performance in demanding situations.</p>
+          {% endif %}
+          {% endblock neuroticism %}
+          {% if traits[2] < 20 %}
+            <p><b>Lower Agreeableness</b></p>
+            <p>Low agreeableness may indicate a tendency towards assertiveness or skepticism, potentially prompting the candidate to prioritize personal goals over maintaining harmony within a team.</p>
+          {% else %}
+            <p><b>Moderate Agreeableness</b></p>
+            <p>High agreeableness suggests the candidate is likely to be cooperative, empathetic, and accommodating, fostering harmonious relationships and demonstrating a strong propensity for teamwork and conflict resolution.</p>
+          {% endif %}
+          {% if traits[3] < 20 %}
+            <p><b>Lower Conscientiousness</b></p>
+            <p>Lower conscientiousness might indicate a tendency towards spontaneity and flexibility, potentially prompting the candidate to prioritize present enjoyment over long-term planning or organization, suggesting the need for development in goal-setting and time management skills.</p>
+          {% else %}
+            <p><b>Good Conscientiousness</b></p>
+            <p>Good conscientiousness suggests the candidate is likely to be diligent, organized, and reliable, demonstrating a strong sense of responsibility, attention to detail, and the ability to consistently meet deadlines and fulfill obligations.</p>
+          {% endif %}
+          {% if traits[4] < 20 %}
+            <p><b>Lower Openness</b></p>
+            <p>Lower openness may indicate a preference for familiarity and routine over novelty and experimentation, potentially leading to a more conventional approach to problem-solving and decision-making, suggesting the need for encouragement to explore new ideas and experiences to foster creativity and innovation.</p>
+          {% else %}
+            <p><b>Moderate Openness</b></p>
+            <p>Moderate openness suggests the candidate is open to new experiences and ideas to a reasonable extent, demonstrating a balance between traditional and innovative approaches, which could contribute to adaptability and creativity within the work environment.</p>
+          {% endif %}
+      </div>
+    <br>
+  </div>
+
+  <div class="column_home" id="left-col" align="center">
+
+    <div class="parent">
+
+        <p><h3>Your most visible trait is : </h3></p>
+        <br>
+        <h4> {{trait}} </h4>
+        <br>
+        <div class="parent">
+            <p><h4>Psychological Traits : </h4></p>
+            <ul align="left">
+            <li>Extraversion : {{traits[0]}}%</li>
+            <li>Neuroticism : {{traits[1]}}%</li>
+            <li>Agreeableness : {{traits[2]}}%</li>
+            <li>Conscientiousness : {{traits[3]}}%</li>
+            <li>Openness : {{traits[4]}}%</li>
+          </ul>
+      </div>
+
+        <p><h3>Most common words :</h3> </p>
+          <ul align="left">
+             {% for el in common_words %}
+                <li>{{el}}</li>
+              {% endfor %}
+          </ul>
+      </div>
+  </div>
+</div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <hr width="50%" style="margin-left: 25%; margin-right:25%">
+  <br>
+  <br>
+
+
+ <div class="row">
+  <h2><i>Other candidates</i></h2>
+
+  <br>
+   <br>
+  <div class="column_home" id="left-col" align="center">
+    <div>
+      <div id="hist_density"></div>
+    </div>
+  </div>
+
+  <div class="column_home" id="left-col" align="center">
+      <br>
+      <p>Their most visible trait is : </p>
+        <br>
+        <h4> {{trait_others}} </h4>
+        <br>
+        <div class="parent">
+          <p>Psychological Traits : </p>
+            <ul align="left">
+            <li>Extraversion : {{probas_others[0]}}%</li>
+            <li>Neuroticism : {{probas_others[1]}}%</li>
+            <li>Agreeableness : {{probas_others[2]}}%</li>
+            <li>Conscientiousness : {{probas_others[3]}}%</li>
+            <li>Openness : {{probas_others[4]}}%</li>
+            </ul>
+      </div>
+      <br>
+    <br>
+  </div>
+
+  <div class="column_home" id="left-col" align="center">
+    <div class="parent">
+        <p>Most common words : </p>
+          <ul align="left">
+             {% for el in common_words_others %}
+                <li>{{el}}</li>
+              {% endfor %}
+          </ul>
+      </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="/static/js/hist_txt_perso.js"></script>
+<script type="text/javascript" src="/static/js/hist_txt_glob.js"></script>
+
+  <form>
+    <input type="button" value="Back" onclick="history.go(-1)">
+  </form>
+
+  {% endblock %}
+
+</body>
+</html>

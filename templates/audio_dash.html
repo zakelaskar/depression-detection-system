@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="">
+    <link rel="stylesheet" type="text/css" href="/static/CSS/style.css">
+      <script type="text/javascript" src="/static/js/d3/d3.js"></script>
+      <script src="//d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+    <title>Dashboard</title>
+
+  </head>
+  <body>
+
+  <a href="/">
+    <img src = "/static/CSS/images/audio_head.png" width="100%">
+  </a>
+
+  <br>
+  <br>
+
+  {% block body %}
+
+ <div class="row">
+   <h2><i>Perceived emotions</i></h2>
+   <br>
+   <br>
+  <div class="column" id="left-col" align="center">
+    <div class="legend1">
+    <div class="legend1"> <p class="country-name"><span class="key-dot you"></span>You</p> </div>
+    <div class="legend1"> <p class="country-name"><span class="key-dot others"></span>Other candidates</p> </div>
+    </div>
+      <div id="audio_emotions_dist"></div>
+  </div>
+
+ <div class="column" align="left">
+     {% if emo == 'Sad' or emo == 'Angry'  or emo == 'Disgust' or emo == 'Fear' or emo == 'Anger'%}
+        You seem to be bothered with something in your life, but it's important to know that you're not alone, and there are people who care about you and want to support you through this.<br/>
+        Try to talk about your life and problems with your people. Seek help from your friends and family. Also it is always cool and okay to consult with the counselor and get yourself aligned again.<br/>
+        We hope in you and believe in yourself, you will do wonders, just remember you are right now in a bad patch and nothing much.<br/>
+        Living a good life is about finding purpose, joy, and fulfillment. Every day is an opportunity to grow, learn, and make a positive impact on yourself and others. Embrace each moment, cherish the people you love, pursue your passions, and always strive to be the best version of yourself. Remember, you have the power to shape your own destiny and create a life that brings you happiness and meaning.<br/>
+     {% elif prob[3] > 5 and emo == 'Neutral' %}
+        <b>Hey, you are doing great,</b><br/>
+        Living a good life is about finding meaning, purpose, and fulfillment. Every day presents an opportunity to make choices that align with your values and aspirations. Remember, each small step you take towards your goals, no matter how insignificant it may seem, contributes to your overall journey. Embrace gratitude, kindness, and compassion, not only towards others but also towards yourself. Cultivate meaningful relationships, pursue your passions, and never underestimate the power of resilience. Your life is precious, and every moment is an opportunity to create a positive impact.<br/>
+        Absolutely! Living life to the fullest means embracing each day with enthusiasm and courage. You're doing great already by taking steps to make the most of your life. Remember that every experience, whether it's a success or a setback, is an opportunity for growth and learning. Celebrate your achievements, no matter how small, and have faith in your ability to overcome challenges. Your journey is unique, and every moment you seize brings you closer to living the fulfilling life you deserve. Keep going, and never forget how incredible you truly are!<br/>
+     {% elif emo == 'Happy' or emo == 'Happiness' %}
+        <b>Hey, you are doing great,</b><br/>
+        Living a good life is about finding meaning, purpose, and fulfillment. Every day presents an opportunity to make choices that align with your values and aspirations. Remember, each small step you take towards your goals, no matter how insignificant it may seem, contributes to your overall journey. Embrace gratitude, kindness, and compassion, not only towards others but also towards yourself. Cultivate meaningful relationships, pursue your passions, and never underestimate the power of resilience. Your life is precious, and every moment is an opportunity to create a positive impact.<br/>
+        Absolutely! Living life to the fullest means embracing each day with enthusiasm and courage. You're doing great already by taking steps to make the most of your life. Remember that every experience, whether it's a success or a setback, is an opportunity for growth and learning. Celebrate your achievements, no matter how small, and have faith in your ability to overcome challenges. Your journey is unique, and every moment you seize brings you closer to living the fulfilling life you deserve. Keep going, and never forget how incredible you truly are!<br/>
+     {% else %}
+        <b>Hey, you are doing good!,</b><br/>
+        Living a good life is about finding meaning, purpose, and fulfillment. Every day presents an opportunity to make choices that align with your values and aspirations. Remember, each small step you take towards your goals, no matter how insignificant it may seem, contributes to your overall journey. Embrace gratitude, kindness, and compassion, not only towards others but also towards yourself. Cultivate meaningful relationships, pursue your passions, and never underestimate the power of resilience. Your life is precious, and every moment is an opportunity to create a positive impact.<br/>
+        Absolutely! Living life to the fullest means embracing each day with enthusiasm and courage. You're doing great already by taking steps to make the most of your life. Remember that every experience, whether it's a success or a setback, is an opportunity for growth and learning. Celebrate your achievements, no matter how small, and have faith in your ability to overcome challenges. Your journey is unique, and every moment you seize brings you closer to living the fulfilling life you deserve. Keep going, and never forget how incredible you truly are!<br/>
+     {% endif %}
+ </div>
+ <div class="column" align="left">
+        <br>
+        <p><h3>Your most frequent emotion is : {{emo}}</h3></p>
+        <div align="left">
+          <ul align="left">
+            <li>Angry    : {{prob[0]}}%</li>
+            <li>Disgust  : {{prob[1]}}%</li>
+            <li>Fear     : {{prob[2]}}%</li>
+            <li>Happy    : {{prob[3]}}%</li>
+            <li>Neutral  : {{prob[4]}}%</li>
+            <li>Sad      : {{prob[5]}}%</li>
+            <li>Surprise : {{prob[6]}}%</li>
+          </ul>
+        </div>
+      <br>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <hr width="50%" style="margin-left: 25%; margin-right:25%">
+  <br>
+  <br>
+
+  <div class="row">
+    <h2><i>Other candidates</i></h2>
+    <br>
+    <br>
+   <div class="column" id="left-col" align="center">
+       <div id="audio_emotions_dist_other"></div>
+   </div>
+   <div class="column" id="left-col" align="center">
+       <br>
+       <br>
+       <br>
+       <br>
+       <br>
+       <br>
+         <p>Other candidates most frequent emotion is : <b>{{emo_other}}</b></p>
+         <div class="parent">
+           <ul align="left">
+             <li>Angry    : {{prob_other[0]}}%</li>
+             <li>Disgust  : {{prob_other[1]}}%</li>
+             <li>Fear     : {{prob_other[2]}}%</li>
+             <li>Happy    : {{prob_other[3]}}%</li>
+             <li>Neutral  : {{prob_other[4]}}%</li>
+             <li>Sad      : {{prob_other[5]}}%</li>
+             <li>Surprise : {{prob_other[6]}}%</li>
+           </ul>
+         </div>
+       <br>
+     </div>
+  </div>
+
+  <script type="text/javascript" src="/static/js/hist_aud_perso.js"></script>
+  <script type="text/javascript" src="/static/js/hist_aud_glob.js"></script>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <form>
+    <input type="button" value="Back" onclick="window.location='/';">
+  </form>
+
+  {% endblock %}
+
+</body>
+</html>

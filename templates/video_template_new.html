@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/CSS/style.css">
+    <title>Live Video</title>
+     <a href="/">
+      <img src = "/static/CSS/images/video_head.png" width="100%">
+    </a>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8  offset-lg-2">
+            <img src="{{ url_for('video_1') }}" width="40%">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <span>
+                <a href="/video_dash" class="button">
+                    Video Dashboard
+                </a>
+                <a href="/" class="button">
+                    Home
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

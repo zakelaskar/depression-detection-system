@@ -1,5 +1,7 @@
 # 🧠 Depression Detection System
 
+![Home Page Screenshot](DDS%20Image.jpeg)
+
 A multi-modal emotion recognition project that integrates **text**, **audio**, and **video** analysis to detect emotional cues, potentially indicative of depression. This system applies Natural Language Processing, Speech Emotion Recognition, and Facial Expression Analysis using machine learning and deep learning models.
 
 ---

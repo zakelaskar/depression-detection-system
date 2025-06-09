@@ -61,8 +61,8 @@ bash
 Copy code
 python main.py
 Then open http://localhost:5000 in your browser.
-
-📊 Model Details
+```
+## 📊 Model Details
 Audio Emotion Model: Trained using MFCC features + CNN/LSTM
 
 Text Emotion Model: SVM classifier on preprocessed sentiment vectors
@@ -71,17 +71,16 @@ Video Model: Face landmarks extracted with dlib and classified via custom NN
 
 Model files are stored in the /Models/ folder.
 
-📦 Deployment Ideas (Optional)
+## 📦 Deployment Ideas (Optional)
 Dockerize the app
 
 Deploy to Heroku, Render, or AWS EC2
 
-🤝 Contributing
+## 🤝 Contributing
 Contributions are welcome! Feel free to fork the repository and submit pull requests.
 
-📜 License
+## 📜 License
 This project is licensed under the MIT License.
-```
 
 ## 📬 Contact
 
